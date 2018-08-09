@@ -1,0 +1,22 @@
+{% extends "basic_app/base.html" %}
+
+{% block body_block %}
+
+<div class="jumbotron">
+
+    <h1>SEARCH HERE!</h1>
+    <form action="/git_user_search/" method="POST">
+
+      {% csrf_token %}
+      {{git_username_form.as_p}}
+      <label for="git_user_search">Username:</label>
+      <input type="text" name="" placeholder="Enter Username">
+
+
+      <input type="submit" name="" value="Find">
+    </form>
+
+
+</div>
+
+{% endblock %}
