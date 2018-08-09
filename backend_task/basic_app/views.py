@@ -5,6 +5,7 @@ from django.contrib.auth.decorators import login_required
 from django.http import HttpResponseRedirect,HttpResponse
 from django.contrib.auth import authenticate,login,logout
 import json
+import requests
 # Create your views here.
 def index(request):
     return render(request,"basic_app/index.html")
@@ -71,14 +72,26 @@ def git_user_search(request):
         git_username_form=GithubUsersForm(data=request.POST)
         if git_username_form.is_valid():
             git_user=git_username_form.save()
-            url=request.GET("https://api.github.com/users/{}".format(git_user))
-            json_object=url.json()
-            r=json.dumps(json_object['git_user'],indent=4,sort_keys=True)
+            url_1=requests.get("https://api.github.com/users/{}".format(git_user))
+            url_2=requests.get("https://api.github.com/users/{}/repos".format(git_user))
+            json_obect_1=url_1.json()
+            json_object_2=url_2.json()
+            r=json.dumps(json_object_2[0]["name"],indent=4,sort_keys=True)
             if r=='null':
                 return HttpResponse("it does not exists")
             else:
-                return HttpResponse("it exists")
+                
+                public_repos=json_obect_1["public_repos"]
+                name_user=json_object_2[0]["owner"]["login"]
+                name_project=json_object_2[0]["name"]
+                lang_user=json_object_2[0]["language"]
+                repo_user="https://github.com/"+json_object_2[0]["full_name"]
+                return render(request,'basic_app/user_info.html',{"name_project":name_project,
+                                                                  "lang_user":lang_user,
+                                                                  "repo_user":repo_user,
+                                                                  "name_user":name_user,
+                                                                  "public_repos":public_repos,})
         else:
             return HttpResponse("kuch bhi matlab")
     else:
-        return render(request,'basic_app/search_user.html',{})
+        return render(request,'basic_app/search_user.html',{"git_username_form":GithubUsersForm()})

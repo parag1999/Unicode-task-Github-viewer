@@ -5,12 +5,12 @@
 <div class="jumbotron">
 
     <h1>SEARCH HERE!</h1>
-    <form action="/git_user_search/" method="POST">
+    <form method="POST">
 
       {% csrf_token %}
-      {{git_username_form.as_p}}
-      <label for="git_user_search">Username:</label>
-      <input type="text" name="" placeholder="Enter Username">
+      {{git_username_form}}
+
+
 
 
       <input type="submit" name="" value="Find">

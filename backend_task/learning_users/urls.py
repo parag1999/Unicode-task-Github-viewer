@@ -22,5 +22,5 @@ urlpatterns = [
     url(r'^admin/', admin.site.urls),
     url(r'^logout/$',views.user_logout,name="logout"),
     url(r'^special/',views.special,name="special"),
-    url(r'^git_user_search/$',views.git_user_search,name="git_user_search"),
+    
 ]
