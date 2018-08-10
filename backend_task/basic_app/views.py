@@ -68,6 +68,7 @@ def user_login(request):
 
 @login_required
 def git_user_search(request):
+    found=False
     if request.method=="POST":
         git_username_form=GithubUsersForm(data=request.POST)
         if git_username_form.is_valid():
@@ -76,22 +77,16 @@ def git_user_search(request):
             url_2=requests.get("https://api.github.com/users/{}/repos".format(git_user))
             json_obect_1=url_1.json()
             json_object_2=url_2.json()
-            r=json.dumps(json_object_2[0]["name"],indent=4,sort_keys=True)
-            if r=='null':
-                return HttpResponse("it does not exists")
+            #r=json.dumps(json_object_2[0]["name"],indent=4,sort_keys=True)
+            info=[]
+            if "message" in json_obect_1:
+                found=True
+                return render(request,'basic_app/search_again_user.html',{"git_username_form":GithubUsersForm()})
             else:
-                
-                public_repos=json_obect_1["public_repos"]
-                name_user=json_object_2[0]["owner"]["login"]
-                name_project=json_object_2[0]["name"]
-                lang_user=json_object_2[0]["language"]
-                repo_user="https://github.com/"+json_object_2[0]["full_name"]
-                return render(request,'basic_app/user_info.html',{"name_project":name_project,
-                                                                  "lang_user":lang_user,
-                                                                  "repo_user":repo_user,
-                                                                  "name_user":name_user,
-                                                                  "public_repos":public_repos,})
+
+
+                return render(request,'basic_app/user_info.html',{"user_data":json_obect_1,"repo_data":json_object_2})
         else:
-            return HttpResponse("kuch bhi matlab")
+            return HttpResponse("INVALID FORM")
     else:
         return render(request,'basic_app/search_user.html',{"git_username_form":GithubUsersForm()})

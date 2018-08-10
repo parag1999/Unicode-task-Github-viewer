@@ -3,18 +3,19 @@
 {% block body_block %}
 
 <div class="jumbotron">
-
-  <h1>USER Found!</h1>
-
-  <h2>USER NAME: </h2>{{name_user}}
-  <br>
-  <h2>PUBLIC REPOS</h2>{{public_repos}}
-  <br>
-  <h2>PROJECT NAME: </h2>{{name_project}}
-  <br>
-  <h2>LANGUAGE URL: </h2>{{lang_user}}
-  <br>
-  <h2>REPO URL: </h2><a href="{{repo_user}}">click here</a>
+  <h1>USERNAME:{{user_data.name}}</h1>
+  <h2>PUBLIC REPOS:{{user_data.public_repos}}</h2>
+  <div class="jumbotron">
+    {% for name in repo_data %}
+      <ul>
+        <li><h3>PROJECT NAME:{{ name.name }}</h3></li>
+        <li><h3>PROJECT LANGUAGE:{{ name.language }}</h3></li>
+        <li><h3>PROJECT LINK:<a href="https://github.com/{{name.owner.login}}/{{name.name}}">Click Here</a></h3></li>
+      </ul>
+      <br>
+      <br>
+      {% endfor %}
+    </div>
 
 
 </div>

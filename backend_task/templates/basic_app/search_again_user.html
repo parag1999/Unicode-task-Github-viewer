@@ -4,16 +4,15 @@
 
 <div class="jumbotron">
 
-    <h1>SEARCH HERE!</h1>
+    <h1>THE USER DOESN'T EXIST</h1>
+    <h2>SEARCH AGAIN!</h2>
     <form method="POST">
 
       {% csrf_token %}
       {{git_username_form}}
       <input type="submit" name="" value="Search">
     </form>
-    {% if found %}
-    <h2>The Username Does not exist Please Search again</h2>
-    {% endif %}
+
 
 
 </div>
