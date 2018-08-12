@@ -6,13 +6,11 @@
   <h1>USERNAME:{{user_info.name}}</h1>
   <h2>PUBLIC REPOS:{{user_info.public_repos}}</h2>
   <div class="jumbotron">
-    {% for name in repo_info %}
+    {% for name in user_commit %}
       <ul>
-        <li><h3>PROJECT NAME:{{ name.name }}</h3></li>
-        <li><h3>PROJECT LANGUAGE:{{ name.language }}</h3></li>
-        <li><h3>PROJECT LINK:<a href="{% url 'repo_detail' user=name.owner.login repo=name.name %}">Click Here</a></h3></li>
-        <h3>COMMIT HISTORY:</h3>
-
+        <li><h3>PROJECT NAME:{{ name.commit }}</h3></li>
+        <li><h3>PROJECT LANGUAGE:{{ name.commiter }}</h3></li>
+        
       </ul>
       <br>
       <br>

@@ -72,21 +72,33 @@ def git_user_search(request):
     if request.method=="POST":
         git_username_form=GithubUsersForm(data=request.POST)
         if git_username_form.is_valid():
-            git_user=git_username_form.save()
-            url_1=requests.get("https://api.github.com/users/{}".format(git_user))
-            url_2=requests.get("https://api.github.com/users/{}/repos".format(git_user))
-            json_obect_1=url_1.json()
+            github_user=git_username_form.save()
+            url_1=requests.get("https://api.github.com/users/{}".format(github_user))
+            url_2=requests.get("https://api.github.com/users/{}/repos".format(github_user))
+            json_object_1=url_1.json()
             json_object_2=url_2.json()
+
             #r=json.dumps(json_object_2[0]["name"],indent=4,sort_keys=True)
-            info=[]
-            if "message" in json_obect_1:
+            #info=[]
+            if "message" in json_object_1:
                 found=True
                 return render(request,'basic_app/search_again_user.html',{"git_username_form":GithubUsersForm()})
             else:
 
+                return render(request,'basic_app/user_info.html',{"user_info":json_object_1,"repo_info":json_object_2})
 
-                return render(request,'basic_app/user_info.html',{"user_data":json_obect_1,"repo_data":json_object_2})
         else:
             return HttpResponse("INVALID FORM")
     else:
         return render(request,'basic_app/search_user.html',{"git_username_form":GithubUsersForm()})
+
+
+
+
+
+
+@login_required
+def commit_info(request,username,repo_name):
+    url3=requests.get("https://api.github.com/repos/{username}/{repo}/commits".format(username=user,repo=repo_name))
+    json_object_3=url3.json()
+    return render(request,'basic_app/commit_data.html',{"user_commit":json_object_3,"repo_name":repo})
