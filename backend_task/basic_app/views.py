@@ -98,7 +98,7 @@ def git_user_search(request):
 
 
 @login_required
-def commit_info(request,username,repo_name):
+def commit_info(request,user,repo_name):
     url3=requests.get("https://api.github.com/repos/{username}/{repo}/commits".format(username=user,repo=repo_name))
     json_object_3=url3.json()
-    return render(request,'basic_app/commit_data.html',{"user_commit":json_object_3,"repo_name":repo})
+    return render(request,'basic_app/commit_data.html',{"user_commit":json_object_3,"repo_name":repo_name})

@@ -8,10 +8,10 @@
   <div class="jumbotron">
     {% for name in repo_info %}
       <ul>
-        <li><h3>PROJECT NAME:{{ name.name }}</h3></li>
+        <li><h3>PROJECT NAME:<a href="{% url 'basic_app:commit_history' user=name.owner.login repo_name=name.name %}">{{ name.name }}</a></h3></li>
         <li><h3>PROJECT LANGUAGE:{{ name.language }}</h3></li>
-        <li><h3>PROJECT LINK:<a href="{% url 'repo_detail' user=name.owner.login repo=name.name %}">Click Here</a></h3></li>
-        <h3>COMMIT HISTORY:</h3>
+        <li><h3>PROJECT LINK:<a href="https://github.com/{{name.owner.login}}/{{name.name}}">Click Here</a></h3></li>
+
 
       </ul>
       <br>
