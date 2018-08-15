@@ -3,14 +3,17 @@
 {% block body_block %}
 
 <div class="jumbotron">
-  <h1>USERNAME:{{user_info.name}}</h1>
-  <h2>PUBLIC REPOS:{{user_info.public_repos}}</h2>
+  <img src="{{user_info.avatar_url}}" class="img-circle" alt="profile pic" width="200px" height="200px" float="right">
+  <h1>Name:{{user_info.name}}</h1>
+  <h2>Public Repos:{{user_info.public_repos}} </h2>
+  <h3>Followers:{{user_info.followers}}   Following:{{user_info.following}}</h3>
+  <h3>Bio:{{user_info.bio}}</h3>
   <div class="jumbotron">
     {% for name in repo_info %}
       <ul>
-        <li><h3>PROJECT NAME:<a href="{% url 'basic_app:commit_history' user=name.owner.login repo_name=name.name %}">{{ name.name }}</a></h3></li>
-        <li><h3>PROJECT LANGUAGE:{{ name.language }}</h3></li>
-        <li><h3>PROJECT LINK:<a href="https://github.com/{{name.owner.login}}/{{name.name}}">Click Here</a></h3></li>
+        <li><h3>Project Name: <a href="{% url 'basic_app:commit_history' user=name.owner.login repo_name=name.name %}">{{ name.name }}</a></h3></li>
+        <li><h3>Project Language:  {{ name.language }}</h3></li>
+        <li><h3>Project Link:<a href="https://github.com/{{name.owner.login}}/{{name.name}}">Click Here</a></h3></li>
 
 
       </ul>

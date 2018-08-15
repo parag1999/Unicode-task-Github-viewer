@@ -3,14 +3,14 @@
 {% block body_block %}
 
 <div class="jumbotron">
-  <h1>REPO NAME:{{repo_name}}</h1>
+  <h2>Repo Name:{{repo_name}}</h2>
 
   <div class="jumbotron">
     {% for obj in user_commit %}
       <ul>
-        <li><h3>COMMIT AUTHOR:{{ obj.commit.author.name }}</h3></li>
-        <li><h3>COMMIT MESSAGE:{{ obj.commit.message }}</h3></li>
-        <li><h3>COMMIT DATE:{{ obj.commit.author.date }}</h3></li>
+        <li><h3>Commit Author:  {{ obj.commit.author.name }}</h3></li>
+        <li><h3>Commit Message:  {{ obj.commit.message }}</h3></li>
+        <li><h3>Commit Date:  {{ obj.commit.author.date }}</h3></li>
 
       </ul>
       <br>

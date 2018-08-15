@@ -73,19 +73,20 @@ def git_user_search(request):
         git_username_form=GithubUsersForm(data=request.POST)
         if git_username_form.is_valid():
             github_user=git_username_form.save()
-            url_1=requests.get("https://api.github.com/users/{}".format(github_user))
-            url_2=requests.get("https://api.github.com/users/{}/repos".format(github_user))
-            json_object_1=url_1.json()
-            json_object_2=url_2.json()
+            url=requests.get("https://api.github.com/search/users?q={} in:fullname".format(github_user))
+            #url_2=requests.get("https://api.github.com/users/{}/repos".format(github_user))
+            json_object=url.json()
+            count=json_object["total_count"]
+            #json_object_2=url_2.json()
 
             #r=json.dumps(json_object_2[0]["name"],indent=4,sort_keys=True)
             #info=[]
-            if "message" in json_object_1:
+            if count==0:
                 found=True
                 return render(request,'basic_app/search_again_user.html',{"git_username_form":GithubUsersForm()})
             else:
 
-                return render(request,'basic_app/user_info.html',{"user_info":json_object_1,"repo_info":json_object_2})
+                return render(request,'basic_app/user_list.html',{"user_search_list":json_object})
 
         else:
             return HttpResponse("INVALID FORM")
@@ -94,6 +95,14 @@ def git_user_search(request):
 
 
 
+
+@login_required
+def git_user_info(request,user):
+        url_1=requests.get("https://api.github.com/users/{username}".format(username=user))
+        url_2=requests.get("https://api.github.com/users/{username}/repos".format(username=user))
+        json_object_1=url_1.json()
+        json_object_2=url_2.json()
+        return render(request,'basic_app/user_info.html',{"user_info":json_object_1,"repo_info":json_object_2})
 
 
 
