@@ -2,21 +2,25 @@
 {% load staticfiles %}
 {% block body_block %}
 
-<div class="jumbotron">
-  <h2>Repo Name:{{repo_name}}</h2>
+<div class="panel-group">
 
-  <div class="jumbotron">
+
     {% for obj in user_commit %}
-      <ul>
-        <li><h3>Commit Author:  {{ obj.commit.author.name }}</h3></li>
-        <li><h3>Commit Message:  {{ obj.commit.message }}</h3></li>
-        <li><h3>Commit Date:  {{ obj.commit.author.date }}</h3></li>
+      <div class="list-group">
+        <div class="panel-heading">
+          <h2 id="x3">Repo Name:{{repo_name}}</h2>
+        </div>
+        <div class="panel-body">
+          <h3 id="x2"><ins>Commit Author</ins>:  {{ obj.commit.author.name }}</h3>
+          <h3 id="x2"><ins>Commit Message</ins>:  {{ obj.commit.message }}</h3>
+          <h3 id="x2"><ins>Commit Date</ins>:  {{ obj.commit.author.date }}</h3>
+        </div>
 
-      </ul>
+      </div>
       <br>
       <br>
       {% endfor %}
-    </div>
+
 
 
 </div>

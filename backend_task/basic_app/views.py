@@ -9,7 +9,8 @@ import requests
 # Create your views here.
 def index(request):
     return render(request,"basic_app/index.html")
-
+def about(request):
+    return render(request,"basic_app/about_me.html")
 @login_required
 def special(request):
     return HttpResponse("You are logged in")
@@ -73,7 +74,7 @@ def git_user_search(request):
         git_username_form=GithubUsersForm(data=request.POST)
         if git_username_form.is_valid():
             github_user=git_username_form.save()
-            url=requests.get("https://api.github.com/search/users?q={} in:fullname".format(github_user))
+            url=requests.get("https://api.github.com/search/users?q={} in:fullname&per_page=100".format(github_user))
             #url_2=requests.get("https://api.github.com/users/{}/repos".format(github_user))
             json_object=url.json()
             count=json_object["total_count"]

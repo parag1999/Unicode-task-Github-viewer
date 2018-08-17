@@ -1,3 +1,77 @@
-#x5{
-  color: Tomato;
+#x1{
+  color: white;
+  border-right-style: solid;
+  border-left-style: solid;
+  border-color: white;
+  border-width: thin;
+}
+
+
+#x2{
+  color: white;
+}
+
+#x3{
+  text-align: center;
+}
+
+#x4{
+  font-size: 100px;
+  color: white;
+  text-align: center;
+  border-top: solid;
+  border-bottom: solid;
+  border-width: thin;
+
+}
+
+
+#i1{
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+
+body{
+  background-image: url("http://github-images.s3.amazonaws.com/blog/2011/cc-wallpaper-desktop.png");
+  background-size: cover;
+  padding-top: 60px;
+  font-family: 'Permanent Marker', cursive;
+}
+
+
+
+.navbar-brand,.navbar-link{
+  color: black;
+
+}
+
+.button{
+  background-color: white;
+  color: black;
+}
+
+.column.side{
+  float: left;
+  width: 34%;
+  position: fixed;
+  height: 90%;
+}
+.column.middle{
+  float: right;
+  width: 60%;
+  position: inherit;
+}
+@media screen and (max-width: 600px) {
+    .column.side, .column.middle {
+        width: 100%;
+    }
+}
+
+
+
+
+.panel-heading{
+  background-color: white;
 }

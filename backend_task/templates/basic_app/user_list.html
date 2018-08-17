@@ -2,20 +2,21 @@
 {% load staticfiles %}
 {% block body_block %}
 
-<div class="jumbotron">
 
-  <div class="jumbotron">
+
     {% for name in user_search_list.items %}
-      <ul>
-        <li><h2><img src="{{name.avatar_url}}" class="img-circle" alt="profile pic" width="100px" height="100px">  <a href="{% url 'basic_app:user_profile' user=name.login  %}">{{ name.login }}</a></h2></li>
+    <div class="list-group" >
 
 
 
-      </ul>
+        <h2 style="background-color: white;">  <a class="list-group-item" href="{% url 'basic_app:user_profile' user=name.login  %}"><img src="{{name.avatar_url}}" class="img-circle" alt="profile pic" width="100px" height="100px">  {{ name.login }}</a></h2>
+
+
+
+
       {% endfor %}
     </div>
 
 
-</div>
 
 {% endblock %}

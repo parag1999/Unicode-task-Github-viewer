@@ -2,19 +2,19 @@
 
 {% block body_block %}
 
-<div class="jumbotron">
-
-    <h1>THE USER DOESN'T EXIST</h1>
-    <h2>SEARCH AGAIN!</h2>
+<div class="panel panel-default">
+  <div class="panel-heading"><h2 id="x3" ><ins>USER NOT FOUND!</ins></h2></div>
+  <div class="panel-body">
     <form method="POST">
 
       {% csrf_token %}
-      {{git_username_form}}
-      <input type="submit" name="" value="Search">
+
+      <h4 id="p3">{{git_username_form}}<input type="submit" class="button" value="Search Again"></h4>
     </form>
-
-
-
+    {% if found %}
+    <h2>The Username Does not exist Please Search again</h2>
+    {% endif %}
+  </div>
 </div>
 
 {% endblock %}
