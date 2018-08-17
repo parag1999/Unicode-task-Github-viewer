@@ -1,5 +1,5 @@
 from django.shortcuts import render
-from basic_app.forms import UserForm,UserProfileInfoForm,GithubUsersForm
+from basic_app.forms import UserForm,UserProfileInfoForm,GithubUsersForm,ContactForm
 from django.urls import reverse
 from django.contrib.auth.decorators import login_required
 from django.http import HttpResponseRedirect,HttpResponse
@@ -9,8 +9,7 @@ import requests
 # Create your views here.
 def index(request):
     return render(request,"basic_app/index.html")
-def about(request):
-    return render(request,"basic_app/about_me.html")
+
 @login_required
 def special(request):
     return HttpResponse("You are logged in")
@@ -84,7 +83,7 @@ def git_user_search(request):
             #info=[]
             if count==0:
                 found=True
-                return render(request,'basic_app/search_again_user.html',{"git_username_form":GithubUsersForm()})
+                return render(request,'basic_app/search_user.html',{"git_username_form":GithubUsersForm(),"found":found})
             else:
 
                 return render(request,'basic_app/user_list.html',{"user_search_list":json_object})
@@ -112,3 +111,17 @@ def commit_info(request,user,repo_name):
     url3=requests.get("https://api.github.com/repos/{username}/{repo}/commits".format(username=user,repo=repo_name))
     json_object_3=url3.json()
     return render(request,'basic_app/commit_data.html',{"user_commit":json_object_3,"repo_name":repo_name})
+
+
+@login_required
+def contact_msg_store(request):
+    enquiry=False
+    if request.method=="POST":
+        contact_message_1=ContactForm(data=request.POST)
+        if contact_message_1.is_valid():
+            contact_me_message=contact_message_1.save()
+            contact_me_message.save()
+            enquiry=True
+    else:
+        contact_message_1=ContactForm()
+    return render(request,'basic_app/contact_me.html',{"contact_message_1":contact_message_1,"enquiry":enquiry})

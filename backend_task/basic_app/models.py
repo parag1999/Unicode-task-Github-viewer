@@ -16,3 +16,6 @@ class GithubUsers(models.Model):
     git_username=models.CharField(max_length=264)
     def __str__(self):
         return self.git_username
+
+class Contact(models.Model):
+    contact_message=models.CharField(max_length=1500)
