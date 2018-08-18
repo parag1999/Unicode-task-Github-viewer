@@ -66,6 +66,8 @@ def user_login(request):
     else:
         return render(request,'basic_app/login.html',{})
 
+
+#takes the input from user searches through the search api
 @login_required
 def git_user_search(request):
     found=False
@@ -74,20 +76,13 @@ def git_user_search(request):
         if git_username_form.is_valid():
             github_user=git_username_form.save()
             url=requests.get("https://api.github.com/search/users?q={} in:fullname&per_page=100".format(github_user))
-            #url_2=requests.get("https://api.github.com/users/{}/repos".format(github_user))
             json_object=url.json()
             count=json_object["total_count"]
-            #json_object_2=url_2.json()
-
-            #r=json.dumps(json_object_2[0]["name"],indent=4,sort_keys=True)
-            #info=[]
             if count==0:
                 found=True
                 return render(request,'basic_app/search_user.html',{"git_username_form":GithubUsersForm(),"found":found})
             else:
-
                 return render(request,'basic_app/user_list.html',{"user_search_list":json_object})
-
         else:
             return HttpResponse("INVALID FORM")
     else:
@@ -95,7 +90,7 @@ def git_user_search(request):
 
 
 
-
+#using dynamic url the input taken from the user_list.html page it goes to urls.py from there it calls git_user_info to display the details on user_info.html
 @login_required
 def git_user_info(request,user):
         url_1=requests.get("https://api.github.com/users/{username}".format(username=user))
@@ -105,14 +100,14 @@ def git_user_info(request,user):
         return render(request,'basic_app/user_info.html',{"user_info":json_object_1,"repo_info":json_object_2})
 
 
-
+#similar to the previous func using the commit api the info of commits is displayed on commit_data.html
 @login_required
 def commit_info(request,user,repo_name):
     url3=requests.get("https://api.github.com/repos/{username}/{repo}/commits".format(username=user,repo=repo_name))
     json_object_3=url3.json()
     return render(request,'basic_app/commit_data.html',{"user_commit":json_object_3,"repo_name":repo_name})
 
-
+#An additional thing added to contact me or send a message to me 
 @login_required
 def contact_msg_store(request):
     enquiry=False

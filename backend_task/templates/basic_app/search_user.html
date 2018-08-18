@@ -1,21 +1,15 @@
 {% extends "basic_app/base.html" %}
 
 {% block body_block %}
-
-<div class="panel panel-default">
-  <div class="panel-heading" style="background: rgba(255,255,255,0.9);"><h2 id="x3"><ins>SEARCH HERE!</ins></h2></div>
-  <div class="panel-body">
-    <form method="POST">
-
+  <h1 id="x3">SEARCH HERE!</h1>
+    <form class="sample" method="POST">
       {% csrf_token %}
-
-      <h4>{{git_username_form}}<input type="submit" class="button" value="Search"></h4>
+      <h4>{{git_username_form}} <input type="submit" class="button" value="Search"></h4>
     </form>
     {% if found %}
-    <h2>The Username Does not exist Please Search again</h2>
+    <h1 id="x3">The Username Does not exist Please Search again</h1>
     {% endif %}
-  </div>
-</div>
+
 
 
 

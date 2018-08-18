@@ -13,9 +13,11 @@ class UserProfileInfo(models.Model):
         #username is the default attribute of the user that we created in line 7
 #new part from here
 class GithubUsers(models.Model):
+    #used for the user input for git search
     git_username=models.CharField(max_length=264)
     def __str__(self):
         return self.git_username
 
 class Contact(models.Model):
+    #used to for contacting me 
     contact_message=models.CharField(max_length=1500)

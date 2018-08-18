@@ -2,16 +2,12 @@
 
 {% block body_block %}
 <div class="jumbotron">
-
-
-<h1>Name:PARAG VAID</h1>
-<h3>Contact Me:<a href="https://github.com/parag1999"><img src="https://assets-cdn.github.com/images/modules/logos_page/GitHub-Mark.png" class="img-circle" width="50px" height="50px"></a></h3>
-
+  <h2>Name:PARAG VAID</h2>
+  <h3>Contact Me:   <a href="https://github.com/parag1999"><img src="https://assets-cdn.github.com/images/modules/logos_page/GitHub-Mark.png" class="img-circle" width="30px" height="30px"></a></h3>
   {% if enquiry %}
-
-    <h2>Thank You For Enquiring will get to you as soon as possible</h2>
+  <h3>Thank You For Enquiring will get to you as soon as possible</h3>
   {% else %}
-  <h1>Enter Your query here</h1>
+  <h3>Enter Your query here</h3>
     <form action="{% url 'basic_app:about_me' %}" method="post">
       {{contact_message_1.as_p}}
       {% csrf_token %}

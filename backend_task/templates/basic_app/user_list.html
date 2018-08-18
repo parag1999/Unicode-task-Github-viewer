@@ -1,22 +1,9 @@
 {% extends "basic_app/base.html" %}
 {% load staticfiles %}
 {% block body_block %}
-
-
-
     {% for name in user_search_list.items %}
     <div class="list-group" >
-
-
-
         <h2 style="background-color: white;">  <a class="list-group-item" href="{% url 'basic_app:user_profile' user=name.login  %}"><img src="{{name.avatar_url}}" class="img-circle" alt="profile pic" width="100px" height="100px">  {{ name.login }}</a></h2>
-
-
-
-
-      {% endfor %}
     </div>
-
-
-
+    {% endfor %}
 {% endblock %}

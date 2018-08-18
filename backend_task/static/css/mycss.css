@@ -1,18 +1,21 @@
 #x1{
-  color: white;
-  border-right-style: solid;
-  border-left-style: solid;
-  border-color: white;
-  border-width: thin;
+  color: black;
+  padding-right: 40px;
 }
-
 
 #x2{
   color: white;
 }
 
 #x3{
+  font-size: 65px;
+  color: white;
   text-align: center;
+  border-top: solid;
+  border-bottom: solid;
+  border-right: solid;
+  border-left: solid;
+  border-width: medium;
 }
 
 #x4{
@@ -21,12 +24,33 @@
   text-align: center;
   border-top: solid;
   border-bottom: solid;
-  border-width: thin;
-
+  border-right: solid;
+  border-left: solid;
+  border-width: medium;
 }
 
 #x5{
   width: 100%;
+}
+#x6{
+  text-align: center;
+}
+
+#x7{
+  font-size: 50px;
+  color: white;
+  text-align: center;
+  border-top: solid;
+  border-bottom: solid;
+  border-right: solid;
+  border-left: solid;
+  border-width: medium;
+
+}
+
+#x8{
+  color: black;
+  text-align: center;
 }
 
 #i1{
@@ -35,18 +59,17 @@
   margin-right: auto;
 }
 
-
 body{
-  background-image: url("http://github-images.s3.amazonaws.com/blog/2011/cc-wallpaper-desktop.png");
+  background-image: url("https://www.walldevil.com/wallpapers/a87/nature-dark-silhouettes-sea-rocks-wallpapers-wallpaper.jpg");
   background-size: cover;
+  background-repeat: no-repeat;
   padding-top: 60px;
-  font-family: 'Amatic CS', cursive;
+  font-family: 'Roboto', sans-serif;
 }
-
-
 
 .navbar-brand,.navbar-link{
   color: black;
+  font-size: 20px;
 
 }
 
@@ -61,20 +84,42 @@ body{
   position: fixed;
   height: 90%;
 }
+
 .column.middle{
   float: right;
   width: 60%;
   position: inherit;
 }
+
 @media screen and (max-width: 600px) {
     .column.side, .column.middle {
         width: 100%;
     }
 }
 
-
-
-
 .panel-heading{
   background-color: white;
+}
+
+.sample{
+  color: white;
+}
+
+input[type=text],input[type=password],input[type=email],#x9{
+  color: black;
+}
+
+
+.jumbotron{
+  background-color: rgba(255,255,255,0);
+  color: white;
+  border-top: solid;
+  border-bottom: solid;
+  border-right: solid;
+  border-left: solid;
+  border-width: medium;
+}
+
+.navbar{
+  min-height: 55px;
 }
