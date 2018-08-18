@@ -27,7 +27,7 @@ SECRET_KEY = '*x!d6#$pp!3+8mscni&h#k3rfkvopy1(xg64e&-7w2opdg6s-n'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['parag1999.pythonanywhere.com','127.0.0.1',]
 
 
 # Application definition
@@ -89,7 +89,7 @@ DATABASES = {
 PASSWORD_HASHERS=[
 
 
-    
+
     'django.contrib.auth.hashers.PBKDF2PasswordHasher',
     'django.contrib.auth.hashers.PBKDF2SHA1PasswordHasher',
     'django.contrib.auth.hashers.BCryptSHA256PasswordHasher',
